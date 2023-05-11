@@ -41,6 +41,11 @@ const GroupChannelSettingsScreen = () => {
         // Navigate to group channel notifications
         navigation.navigate(Routes.GroupChannelNotifications, params);
       }}
+      menuItemsCreator={(defaultMenuItems) => {
+        return defaultMenuItems.filter((menu) => {
+          return menu.name !== 'Moderation';
+        });
+      }}
     />
   );
 };

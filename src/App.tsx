@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { SendbirdUIKitContainer, useSendbirdChat } from '@sendbird/uikit-react-native';
-import { DarkUIKitTheme, LightUIKitTheme } from '@sendbird/uikit-react-native-foundation';
+import { createTheme, DarkUIKitTheme, LightUIKitTheme, Palette } from '@sendbird/uikit-react-native-foundation';
 
 // import LogView from './components/LogView';
 import {
@@ -18,6 +18,7 @@ import {
 import useAppearance from './hooks/useAppearance';
 import { navigationActions, navigationRef, Routes } from './libs/navigation';
 // import { onForegroundAndroid, onForegroundIOS } from './libs/notification';
+
 import {
   ErrorInfoScreen,
   GroupChannelBannedUsersScreen,
@@ -50,6 +51,21 @@ import {
   ThemeColorsScreen,
 } from './screens';
 import FileViewerScreen from './screens/uikit/FileViewerScreen';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['UIKit Warning:']);
+
+const darkTheme = createTheme({
+  colorScheme: 'dark',
+  palette: { ...Palette, information: '#A9BBFA' },
+  colors: () => DarkUIKitTheme.colors,
+});
+
+const lightTheme = createTheme({
+  colorScheme: 'light',
+  palette: { ...Palette, information: '#A9BBFA' },
+  colors: () => LightUIKitTheme.colors,
+});
 
 const App = () => {
   const { scheme } = useAppearance();
@@ -74,8 +90,8 @@ const App = () => {
         media: MediaService,
       }}
       styles={{
-        defaultHeaderTitleAlign: 'left', //'center',
-        theme: isLightTheme ? LightUIKitTheme : DarkUIKitTheme,
+        defaultHeaderTitleAlign: 'left',
+        theme: isLightTheme ? lightTheme : darkTheme,
         statusBarTranslucent: GetTranslucent(),
       }}
       errorBoundary={{ ErrorInfoComponent: ErrorInfoScreen }}
@@ -187,46 +203,4 @@ const Navigations = () => {
     </NavigationContainer>
   );
 };
-
-/**
- *
- * @example How to customize UIKit global navigation
- * ```
- * const UseReactNavigationHeader: HeaderStyleContextType['HeaderComponent'] = ({
- *   title,
- *   right,
- *   left,
- *   onPressLeft,
- *   onPressRight,
- * }) => {
- *   const { navigation } = useAppNavigation();
- *   useEffect(() => {
- *     navigation.setOptions({
- *       headerShown: true,
- *       headerTitleAlign: 'center',
- *       headerBackVisible: false,
- *       headerTitle: () => (typeof title === 'string' ? <Text subtitle2>{title}</Text> : title),
- *       headerLeft: () => <Pressable onPress={onPressLeft}>{left}</Pressable>,
- *       headerRight: () => <Pressable onPress={onPressRight}>{right}</Pressable>,
- *     });
- *   }, [title, right, left, onPressLeft, onPressRight]);
- *   return null;
- * };
- *
- * const App = () => {
- *   return (
- *     <SendbirdUIKitContainer
- *       appId={APP_ID}
- *       styles={{
- *         HeaderComponent: UseReactNavigationHeader,
- *       }}
- *     >
- *       <Navigations />
- *     </SendbirdUIKitContainer>
- *   );
- * };
- *
- * ```
- * */
-
 export default App;

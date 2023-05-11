@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Image, StyleSheet, View } from 'react-native';
-
-import { SessionHandler } from '@sendbird/chat';
-import { useConnection, useSendbirdChat } from '@sendbird/uikit-react-native';
+import { ActivityIndicator, Image, Platform, StyleSheet, View } from 'react-native';
+import { useConnection } from '@sendbird/uikit-react-native';
 import { Button, Text, TextInput, useUIKitTheme } from '@sendbird/uikit-react-native-foundation';
 
 import Versions from '../components/Versions';
 import { useAppAuth } from '../libs/authentication';
 
 const SignInScreen = () => {
-  const [userId, setUserId] = useState('User_ReactNative');
-  const [nickname, setNickname] = useState('User_ReactNative');
+  const [userId, setUserId] = useState('User_ReactNative_' + Platform.OS);
+  const [nickname, setNickname] = useState('User_ReactNative_' + Platform.OS);
   const [loading, setLoading] = useState(false);
 
   const { connect } = useConnection();

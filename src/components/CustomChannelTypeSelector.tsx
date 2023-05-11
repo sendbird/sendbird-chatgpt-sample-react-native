@@ -12,27 +12,9 @@ import {
 import { GroupChannelListContexts, useSendbirdChat } from '@sendbird/uikit-react-native';
 import { Routes } from '../libs/navigation';
 import { useAppNavigation } from '../hooks/useAppNavigation';
+import { BotIcons, BotIds, BotNames, BotType, BotTypes } from '../botInformation';
 
 const STATUS_BAR_TOP_INSET_AS: 'margin' | 'padding' = Platform.select({ android: 'margin', default: 'padding' });
-
-type BotType = 'Bot1' | 'Bot2' | 'Bot3';
-
-const BotTypes: BotType[] = ['Bot1', 'Bot2', 'Bot3'];
-const BotIcons = {
-  'Bot1': require('../assets/bot.png'),
-  'Bot2': require('../assets/bot.png'), // TODO
-  'Bot3': require('../assets/bot.png'), // TODO
-};
-const BotIds = {
-  Bot1: 'gpt_bot',
-  Bot2: 'gpt_bot', // TODO
-  Bot3: 'gpt_bot', // TODO
-};
-const BotNames = {
-  Bot1: 'Sendbird GPT Bot',
-  Bot2: 'Sendbird GPT Bot', // TODO
-  Bot3: 'Sendbird GPT Bot', // TODO
-};
 
 const CustomChannelTypeSelector = () => {
   const { statusBarTranslucent, HeaderComponent } = useHeaderStyle();

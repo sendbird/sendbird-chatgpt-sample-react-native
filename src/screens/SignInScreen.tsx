@@ -25,7 +25,7 @@ const SignInScreen = () => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <Image style={styles.logo} source={require('../assets/logoSendbird.png')} />
-      <Text style={styles.title}>{'Sendbird RN-UIKit sample'}</Text>
+      <Text style={styles.title}>{'RN-UIKit ChatGPT sample'}</Text>
       <TextInput
         placeholder={'User ID'}
         value={userId}

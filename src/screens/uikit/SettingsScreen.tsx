@@ -3,7 +3,14 @@ import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { usePushTrigger } from '@sendbird/uikit-chat-hooks';
-import { SBUError, SBUUtils, useLocalization, usePlatformService, useSendbirdChat } from '@sendbird/uikit-react-native';
+import {
+  SBUError,
+  SBUUtils,
+  useConnection,
+  useLocalization,
+  usePlatformService,
+  useSendbirdChat,
+} from '@sendbird/uikit-react-native';
 import {
   Avatar,
   Divider,
@@ -41,7 +48,8 @@ const SettingsScreen = () => {
   const { openMenu } = useActionMenu();
   const { alert } = useAlert();
 
-  const { authManager } = useAppAuth();
+  const { disconnect } = useConnection();
+  const { authManager, signOut } = useAppAuth();
 
   const onChangeNickname = () => {
     openPrompt({
@@ -151,8 +159,11 @@ const SettingsScreen = () => {
     {
       icon: 'leave',
       iconBackgroundColor: palette.error300,
-      name: 'Exit to home',
-      onPress: onExitToHome,
+      name: 'Sign out',
+      onPress: async () => {
+        await signOut();
+        await disconnect();
+      },
     },
   ];
 

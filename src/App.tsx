@@ -18,7 +18,6 @@ import {
 import useAppearance from './hooks/useAppearance';
 import { navigationActions, navigationRef, Routes } from './libs/navigation';
 // import { onForegroundAndroid, onForegroundIOS } from './libs/notification';
-
 import {
   ErrorInfoScreen,
   GroupChannelBannedUsersScreen,
@@ -33,22 +32,8 @@ import {
   GroupChannelScreen,
   GroupChannelSettingsScreen,
   GroupChannelTabs,
-  HomeScreen,
   MessageSearchScreen,
-  OpenChannelBannedUsersScreen,
-  OpenChannelCreateScreen,
-  OpenChannelLiveStreamScreen,
-  OpenChannelModerationScreen,
-  OpenChannelMutedParticipantsScreen,
-  OpenChannelOperatorsScreen,
-  OpenChannelParticipantsScreen,
-  OpenChannelRegisterOperatorScreen,
-  OpenChannelScreen,
-  OpenChannelSettingsScreen,
-  OpenChannelTabs,
-  PaletteScreen,
   SignInScreen,
-  ThemeColorsScreen,
 } from './screens';
 import FileViewerScreen from './screens/uikit/FileViewerScreen';
 import { LogBox } from 'react-native';
@@ -142,8 +127,6 @@ const Navigations = () => {
           <RootStack.Screen name={Routes.SignIn} component={SignInScreen} />
         ) : (
           <>
-            <RootStack.Screen name={Routes.Home} component={HomeScreen} />
-
             {/** Group channels **/}
             <RootStack.Group>
               <RootStack.Screen name={Routes.GroupChannelTabs} component={GroupChannelTabs} />
@@ -166,36 +149,8 @@ const Navigations = () => {
               <RootStack.Screen name={Routes.MessageSearch} component={MessageSearchScreen} />
             </RootStack.Group>
 
-            {/** Open channels **/}
-            <RootStack.Group>
-              <RootStack.Screen name={Routes.OpenChannelTabs} component={OpenChannelTabs} />
-              <RootStack.Screen name={Routes.OpenChannel} component={OpenChannelScreen} />
-              <RootStack.Screen name={Routes.OpenChannelLiveStream} component={OpenChannelLiveStreamScreen} />
-              <RootStack.Group>
-                <RootStack.Screen name={Routes.OpenChannelSettings} component={OpenChannelSettingsScreen} />
-                <RootStack.Screen name={Routes.OpenChannelParticipants} component={OpenChannelParticipantsScreen} />
-                <RootStack.Screen name={Routes.OpenChannelModeration} component={OpenChannelModerationScreen} />
-                <RootStack.Screen
-                  name={Routes.OpenChannelMutedParticipants}
-                  component={OpenChannelMutedParticipantsScreen}
-                />
-                <RootStack.Screen name={Routes.OpenChannelBannedUsers} component={OpenChannelBannedUsersScreen} />
-                <RootStack.Screen name={Routes.OpenChannelOperators} component={OpenChannelOperatorsScreen} />
-                <RootStack.Screen
-                  name={Routes.OpenChannelRegisterOperator}
-                  component={OpenChannelRegisterOperatorScreen}
-                />
-              </RootStack.Group>
-              <RootStack.Screen name={Routes.OpenChannelCreate} component={OpenChannelCreateScreen} />
-            </RootStack.Group>
-
             <RootStack.Group screenOptions={{ animation: 'slide_from_bottom', headerShown: false }}>
               <RootStack.Screen name={Routes.FileViewer} component={FileViewerScreen} />
-            </RootStack.Group>
-
-            <RootStack.Group screenOptions={{ headerShown: true }}>
-              <RootStack.Screen name={Routes.ThemeColors} component={ThemeColorsScreen} />
-              <RootStack.Screen name={Routes.Palette} component={PaletteScreen} />
             </RootStack.Group>
           </>
         )}

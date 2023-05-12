@@ -5,7 +5,6 @@ import React from 'react';
 import { SendbirdUIKitContainer, useSendbirdChat } from '@sendbird/uikit-react-native';
 import { createTheme, DarkUIKitTheme, LightUIKitTheme, Palette } from '@sendbird/uikit-react-native-foundation';
 
-// import LogView from './components/LogView';
 import {
   ClipboardService,
   FileService,
@@ -17,7 +16,6 @@ import {
 } from './factory';
 import useAppearance from './hooks/useAppearance';
 import { navigationActions, navigationRef, Routes } from './libs/navigation';
-// import { onForegroundAndroid, onForegroundIOS } from './libs/notification';
 import {
   ErrorInfoScreen,
   GroupChannelBannedUsersScreen,

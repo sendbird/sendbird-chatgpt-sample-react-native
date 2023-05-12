@@ -9,25 +9,6 @@ import { authManager } from './authentication';
 
 export enum Routes {
   SignIn = 'SignIn',
-  Home = 'Home',
-
-  Storybook = 'Storybook',
-  Palette = 'Palette',
-  ThemeColors = 'ThemeColors',
-
-  OpenChannelTabs = 'OpenChannelTabs',
-  OpenChannelListCommunity = 'OpenChannelListCommunity',
-  OpenChannelListLiveStreams = 'OpenChannelListLiveStreams',
-  OpenChannel = 'OpenChannel',
-  OpenChannelLiveStream = 'OpenChannelLiveStream',
-  OpenChannelSettings = 'OpenChannelSettings',
-  OpenChannelParticipants = 'OpenChannelParticipants',
-  OpenChannelCreate = 'OpenChannelCreate',
-  OpenChannelModeration = 'OpenChannelModeration',
-  OpenChannelMutedParticipants = 'OpenChannelMutedParticipants',
-  OpenChannelBannedUsers = 'OpenChannelBannedUsers',
-  OpenChannelOperators = 'OpenChannelOperators',
-  OpenChannelRegisterOperator = 'OpenChannelRegisterOperator',
 
   GroupChannelTabs = 'GroupChannelTabs',
   GroupChannelList = 'GroupChannelList',
@@ -56,22 +37,6 @@ export type RouteParamsUnion =
   /** Shared screens **/
   | {
       route: Routes.SignIn;
-      params: undefined;
-    }
-  | {
-      route: Routes.Home;
-      params: undefined;
-    }
-  | {
-      route: Routes.Storybook;
-      params: undefined;
-    }
-  | {
-      route: Routes.Palette;
-      params: undefined;
-    }
-  | {
-      route: Routes.ThemeColors;
       params: undefined;
     }
   | {
@@ -143,59 +108,6 @@ export type RouteParamsUnion =
     }
   | {
       route: Routes.MessageSearch;
-      params: ChannelUrlParams;
-    }
-  /** OpenChannel screens **/
-  | {
-      route: Routes.OpenChannelTabs;
-      params: Partial<ChannelUrlParams> | undefined;
-    }
-  | {
-      route: Routes.OpenChannelListLiveStreams;
-      params: Partial<ChannelUrlParams> | undefined;
-    }
-  | {
-      route: Routes.OpenChannelListCommunity;
-      params: Partial<ChannelUrlParams> | undefined;
-    }
-  | {
-      route: Routes.OpenChannel;
-      params: ChannelUrlParams;
-    }
-  | {
-      route: Routes.OpenChannelLiveStream;
-      params: ChannelUrlParams;
-    }
-  | {
-      route: Routes.OpenChannelSettings;
-      params: ChannelUrlParams;
-    }
-  | {
-      route: Routes.OpenChannelParticipants;
-      params: ChannelUrlParams;
-    }
-  | {
-      route: Routes.OpenChannelCreate;
-      params: undefined;
-    }
-  | {
-      route: Routes.OpenChannelModeration;
-      params: ChannelUrlParams;
-    }
-  | {
-      route: Routes.OpenChannelBannedUsers;
-      params: ChannelUrlParams;
-    }
-  | {
-      route: Routes.OpenChannelMutedParticipants;
-      params: ChannelUrlParams;
-    }
-  | {
-      route: Routes.OpenChannelOperators;
-      params: ChannelUrlParams;
-    }
-  | {
-      route: Routes.OpenChannelRegisterOperator;
       params: ChannelUrlParams;
     };
 

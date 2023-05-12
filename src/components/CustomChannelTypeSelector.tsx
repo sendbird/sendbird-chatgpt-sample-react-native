@@ -25,7 +25,7 @@ const CustomChannelTypeSelector = () => {
   const { sdk, currentUser } = useSendbirdChat();
   const { navigation } = useAppNavigation();
 
-  const onPressBotType = async (bot: Bot) => {
+  const startWithChatGPTBot = async (bot: Bot) => {
     hide();
 
     const channel = await sdk.groupChannel.createChannel({
@@ -53,7 +53,7 @@ const CustomChannelTypeSelector = () => {
               <TouchableOpacity
                 key={bot.id}
                 activeOpacity={0.6}
-                onPress={() => onPressBotType(bot)}
+                onPress={() => startWithChatGPTBot(bot)}
                 style={styles.typeButton}
               >
                 <DefaultTypeIcon bot={bot} />

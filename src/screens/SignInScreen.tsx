@@ -5,10 +5,11 @@ import { Button, Text, TextInput, useUIKitTheme } from '@sendbird/uikit-react-na
 
 import Versions from '../components/Versions';
 import { useAppAuth } from '../libs/authentication';
+import { USER_ID, NICKNAME } from '../configurations';
 
 const SignInScreen = () => {
-  const [userId, setUserId] = useState('User_ReactNative_' + Platform.OS);
-  const [nickname, setNickname] = useState('User_ReactNative_' + Platform.OS);
+  const [userId, setUserId] = useState(USER_ID);
+  const [nickname, setNickname] = useState(NICKNAME);
   const [loading, setLoading] = useState(false);
 
   const { connect } = useConnection();

@@ -1,4 +1,8 @@
+import { Platform } from 'react-native';
+
 export const APP_ID = 'BDD627AC-AC88-45F4-B277-2B3B5C4610E3';
+export const USER_ID = `User_ReactNative_${Platform.OS}`;
+export const NICKNAME = USER_ID;
 
 export const Bots: Record<string, Bot> = {
   Bot1: {

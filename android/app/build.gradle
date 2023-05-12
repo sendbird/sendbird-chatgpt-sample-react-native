@@ -93,7 +93,7 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.sendbird.chatgpt.sample.reactnative"
+    namespace "com.uikitchatgpt"
     defaultConfig {
         applicationId "com.sendbird.chatgpt.sample.reactnative"
         minSdkVersion rootProject.ext.minSdkVersion

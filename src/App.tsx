@@ -37,6 +37,7 @@ import {
 } from './screens';
 import FileViewerScreen from './screens/uikit/FileViewerScreen';
 import { LogBox } from 'react-native';
+import { APP_ID } from './configurations';
 
 LogBox.ignoreLogs(['UIKit Warning:']);
 
@@ -58,15 +59,13 @@ const App = () => {
 
   return (
     <SendbirdUIKitContainer
-      appId={'BDD627AC-AC88-45F4-B277-2B3B5C4610E3'}
+      appId={APP_ID}
       chatOptions={{
         localCacheStorage: AsyncStorage,
         onInitialized: SetSendbirdSDK,
-        enableAutoPushTokenRegistration: false,
         enableChannelListTypingIndicator: true,
         enableChannelListMessageReceiptStatus: true,
-        enableUserMention: true,
-        enableMessageSearch: true,
+        enableAutoPushTokenRegistration: false,
       }}
       platformServices={{
         file: FileService,

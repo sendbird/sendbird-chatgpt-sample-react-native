@@ -1,8 +1,8 @@
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { GroupChannelProps } from '@sendbird/uikit-react-native';
 import { UserMessage } from '@sendbird/chat/message';
-import { Text, useUIKitTheme } from '@sendbird/uikit-react-native-foundation';
+import { Avatar, Text, useUIKitTheme } from '@sendbird/uikit-react-native-foundation';
 import { format } from 'date-fns';
 
 const BotIncomingMessage: GroupChannelProps['MessageList']['renderMessage'] = ({
@@ -26,23 +26,23 @@ const BotIncomingMessage: GroupChannelProps['MessageList']['renderMessage'] = ({
   // );
 
   const userMessage = message as UserMessage;
+  const color = colors.ui.groupChannelMessage.incoming.enabled;
 
   return (
-    <Pressable onPress={onPress} onLongPress={onLongPress}>
-      {({ pressed }) => {
-        const color = colors.ui.groupChannelMessage.incoming[pressed ? 'pressed' : 'enabled'];
-        return (
-          <View style={styles.container}>
-            <View style={styles.avatarContainer}>
-              <Pressable onPress={() => onPressAvatar?.(userMessage.sender)}>
-                <Image source={{ uri: userMessage.sender.profileUrl }} style={styles.avatar} />
-              </Pressable>
-            </View>
-            <View style={styles.bubbleContainer}>
-              <View style={styles.bubbleWrapper}>
-                <Text color={color.textSenderName} caption1 style={{ marginBottom: 4 }}>
-                  {userMessage.sender.nickname}
-                </Text>
+    <View style={styles.container}>
+      <View style={styles.avatarContainer}>
+        <Pressable onPress={() => onPressAvatar?.(userMessage.sender)}>
+          <Avatar size={26} uri={userMessage.sender.profileUrl} />
+        </Pressable>
+      </View>
+      <View style={styles.bubbleContainer}>
+        <View style={styles.bubbleWrapper}>
+          <Text color={color.textSenderName} caption1 style={{ marginBottom: 4 }}>
+            {userMessage.sender.nickname}
+          </Text>
+          <Pressable onPress={onPress} onLongPress={onLongPress}>
+            {({ pressed }) => {
+              return (
                 <View
                   style={[
                     styles.bubble,
@@ -58,15 +58,15 @@ const BotIncomingMessage: GroupChannelProps['MessageList']['renderMessage'] = ({
                     {userMessage.message}
                   </Text>
                 </View>
-              </View>
-              <Text caption4 color={color.textTime}>
-                {format(userMessage.createdAt, 'p')}
-              </Text>
-            </View>
-          </View>
-        );
-      }}
-    </Pressable>
+              );
+            }}
+          </Pressable>
+        </View>
+        <Text caption4 color={color.textTime}>
+          {format(userMessage.createdAt, 'p')}
+        </Text>
+      </View>
+    </View>
   );
 };
 
@@ -77,13 +77,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   avatarContainer: {
+    justifyContent: 'flex-end',
     marginRight: 12,
-  },
-  avatar: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
-    overflow: 'hidden',
   },
   bubbleContainer: {
     flexDirection: 'row',

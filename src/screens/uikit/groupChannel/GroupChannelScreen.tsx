@@ -5,7 +5,7 @@ import { createGroupChannelFragment, MessageRenderer, useSendbirdChat } from '@s
 
 import { useAppNavigation } from '../../../hooks/useAppNavigation';
 import { Routes } from '../../../libs/navigation';
-import { BotIds } from '../../../botInformation';
+import { Bots } from '../../../configurations';
 import BotIncomingMessage from '../../../components/BotIncomingMessage';
 import CustomGroupChannelMessageList from '../../../components/CustomGroupChannelMessageList';
 
@@ -44,7 +44,7 @@ const GroupChannelScreen = () => {
       renderMessage={(props) => {
         if (props.message.isUserMessage()) {
           const senderId = props.message.sender.userId;
-          const isBotMessage = Object.values(BotIds).some((it) => it === senderId);
+          const isBotMessage = Object.values(Bots).some((it) => it.id === senderId);
           if (isBotMessage) {
             return <BotIncomingMessage {...props} />;
           }

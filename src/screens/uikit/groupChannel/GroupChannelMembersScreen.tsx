@@ -14,7 +14,7 @@ import { Routes } from '../../../libs/navigation';
 import { ifOperator, ifThenOr } from '@sendbird/uikit-utils';
 import { ActionMenuItem, useActionMenu } from '@sendbird/uikit-react-native-foundation';
 import { Role } from '@sendbird/chat';
-import { BotIds } from '../../../botInformation';
+import { Bots } from '../../../configurations';
 
 const GroupChannelMembersFragment = createGroupChannelMembersFragment();
 
@@ -35,7 +35,7 @@ const GroupChannelMembersScreen = () => {
       channel={channel}
       renderUser={(user) => {
         const meOperator = channel.myRole === Role.OPERATOR;
-        const userNotBot = Object.values(BotIds).every((id) => user.userId !== id);
+        const userNotBot = Object.values(Bots).every((bot) => user.userId !== bot.id);
 
         return (
           <UserActionBar

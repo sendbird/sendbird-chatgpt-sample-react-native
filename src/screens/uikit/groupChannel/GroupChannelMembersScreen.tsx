@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { useGroupChannel } from '@sendbird/uikit-chat-hooks';
 import {
   createGroupChannelMembersFragment,
   useLocalization,
   UserActionBar,
+  UserListContexts,
   useSendbirdChat,
   useUserProfile,
 } from '@sendbird/uikit-react-native';
@@ -12,11 +13,16 @@ import {
 import { useAppNavigation } from '../../../hooks/useAppNavigation';
 import { Routes } from '../../../libs/navigation';
 import { ifOperator, ifThenOr } from '@sendbird/uikit-utils';
-import { ActionMenuItem, useActionMenu } from '@sendbird/uikit-react-native-foundation';
+import { ActionMenuItem, Header, Icon, useActionMenu } from '@sendbird/uikit-react-native-foundation';
 import { Role } from '@sendbird/chat';
 import { Bots } from '../../../configurations';
 
-const GroupChannelMembersFragment = createGroupChannelMembersFragment();
+const GroupChannelMembersFragment = createGroupChannelMembersFragment({
+  Header: (props) => {
+    const { headerTitle } = useContext(UserListContexts.Fragment);
+    return <Header title={headerTitle} left={<Icon icon={'arrow-left'} />} onPressLeft={props.onPressHeaderLeft} />;
+  },
+});
 
 const GroupChannelMembersScreen = () => {
   const { navigation, params } = useAppNavigation<Routes.GroupChannelInvite>();
